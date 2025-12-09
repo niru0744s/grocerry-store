@@ -1,0 +1,40 @@
+/* Infinite loop announcement bar (no pause controls) */
+
+.ann-bar {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 40;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: Inter, system-ui, Arial;
+}
+
+/* scrolling wrapper */
+.ann-inner {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee linear infinite var(--marquee-duration, 18s);
+}
+
+/* announcement text */
+.ann-text {
+  padding-right: 2rem;
+  display: inline-block;
+}
+
+/* marquee keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* mobile adjustments */
+@media (max-width: 520px) {
+  .ann-bar { font-size: 13px; }
+  .ann-text { padding-right: 1rem; }
+}

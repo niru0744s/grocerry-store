@@ -1,0 +1,140 @@
+:root {
+  --peach: #f2d9cf;
+  --dark-brown: #3b2b2b;
+  --muted: #e7d2c8;
+}
+
+/* Section wrapper */
+.hero {
+  position: relative;
+  background: var(--peach);
+  overflow: hidden;
+}
+
+/* wave SVG containers (top & bottom) */
+.hero-wave {
+  width: 100%;
+  height: 0px;
+  display: block;
+  pointer-events: none;
+}
+.hero-wave .wave-svg { width: 100%; height: 100%; display: block; }
+.hero-wave-top .wave-svg path,
+.hero-wave-bottom .wave-svg path {
+  fill: var(--peach);
+  opacity: 1;
+}
+
+/* Background image area */
+.hero-bg {
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  min-height: 360px;           /* desktop height */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+/* overlay to place content */
+.hero-overlay {
+  width: 100%;
+  max-width: 1100px;
+  padding: 48px 20px 78px;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* left content */
+.hero-content {
+  flex: 1 1 60%;
+  color: white;
+  max-width: 720px;
+}
+
+/* small subtitle line */
+.hero-sub {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 1px;
+}
+
+/* big highlighted title */
+.hero-title {
+  margin: 0;
+  font-size: 56px;
+  line-height: 0.95;
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* if you want the highlight different you can target .hero-title-plain */
+.hero-title-plain {
+  color: #f5c7b0; /* warm peach-ish highlight */
+  display: block;
+}
+
+/* description */
+.hero-desc {
+  margin-top: 12px;
+  color: rgba(255,255,255,0.9);
+  max-width: 520px;
+  font-size: 15px;
+}
+
+/* CTA */
+.btn-cta {
+  margin-top: 18px;
+  background: white;
+  color: var(--dark-brown);
+  padding: 8px 14px;
+  border-radius: 22px;
+  border: 0;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* decorative right-side circle representing the cup */
+.hero-deco {
+  flex: 0 0 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-coffee-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  box-shadow: inset -8px -8px 24px rgba(255,255,255,0.04);
+  border: 6px solid rgba(255,255,255,0.08);
+}
+
+/* bottom wave area spacing */
+.hero-wave-bottom {
+  margin-top: -2px;
+}
+
+/* responsive adjustments */
+@media (max-width: 900px) {
+  .hero-overlay { padding: 36px 18px 64px; }
+  .hero-title { font-size: 44px; }
+  .hero-deco { display: none; } /* hide right image on smaller screens */
+  .hero-bg { min-height: 320px; background-position: center; }
+}
+
+@media (max-width: 520px) {
+  .hero-overlay { padding: 26px 12px 42px; flex-direction: column; align-items: flex-start; }
+  .hero-content { width: 100%; }
+  .hero-title { font-size: 32px; }
+  .hero-sub { font-size: 12px; }
+  .btn-cta { padding: 10px 14px; }
+  .hero-bg { min-height: 260px; background-position: center; }
+}
