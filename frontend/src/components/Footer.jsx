@@ -1,104 +1,97 @@
-import React, { useState } from 'react';
-import './footer.css';
+import React from "react";
+import "./footer.css";
+
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import EmailIcon from '@mui/icons-material/Email';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+
 export default function Footer() {
-  const [form, setForm] = useState({
-    name: '', email: '', phone: '', address: '', message: ''
-  });
-  const [status, setStatus] = useState(null);
-
-  const onChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // Basic validation
-    if (!form.name || !form.email || !form.message) {
-      setStatus({ type: 'error', text: 'Please fill name, email and message.' });
-      return;
-    }
-    // MOCK submit - replace this with a server call (fetch/axios)
-    setStatus({ type: 'sending', text: 'Sending...' });
-    setTimeout(() => {
-      setStatus({ type: 'ok', text: 'Message sent. We will get back to you soon.' });
-      setForm({ name: '', email: '', phone: '', address: '', message: '' });
-    }, 900);
-  };
-
   return (
-    <footer className="site-footer" aria-labelledby="footer-heading">
-      {/* slanted top using svg */}
-      <div className="footer-slope" aria-hidden>
-        <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="slope-svg">
-          <polygon points="0,10 100,0 100,10" fill="var(--dark)"/>
-        </svg>
-      </div>
+    <footer className="site-footer m-2 rounded">
 
-      <div className="footer-inner">
+      <div className="footer-inner container">
+
+        {/* LEFT SIDE */}
         <div className="footer-left">
-          <h2 id="footer-heading" className="footer-title">CONTACT US</h2>
-          <p className="footer-sub">We are looking forward to hearing from you soon</p>
 
-          <div className="footer-address">
-            <div className="addr-icon">✉️</div>
-            <div>
-              <div className="addr-label">ADDRESS</div>
-              <address className="addr-text">
-                Aurora Casa / SS Crackers<br/>
-                12 Festival Market<br/>
-                Parade Road, YourCity<br/>
-                PIN - 123456
-              </address>
+          {/* Brand */}
+          <div className="footer-brand">
+            <div className="footer-logo-circle">
+              <LocalGroceryStoreIcon className="logo-icon" />
             </div>
+            <h3 className="footer-brand-name">Grocery.</h3>
           </div>
 
-          <div className="footer-socials" aria-hidden>
-            <a href="#" className="social"><WhatsAppIcon/></a>
-            <a href="#" className="social"><FacebookIcon/></a>
-            <a href="#" className="social"><TelegramIcon/></a>
-            <a href="#" className="social"><EmailIcon/></a>
+          {/* Description */}
+          <p className="footer-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+            tempor incididunt ut labore et dolore magna.
+          </p>
+
+          {/* Social Icons */}
+          <div className="footer-social">
+            <a href="#" className="social-link"><FacebookIcon /></a>
+            <a href="#" className="social-link"><WhatsAppIcon /></a>
+            <a href="#" className="social-link"><TelegramIcon /></a>
+            <a href="#" className="social-link"><EmailIcon /></a>
           </div>
         </div>
 
+        {/* MIDDLE SECTION - NAVIGATION */}
+        <div className="footer-middle">
+          <div className="footer-col">
+            <h4 className="footer-title">Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Career</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-title">Customer Services</h4>
+            <ul>
+              <li><a href="#">My Account</a></li>
+              <li><a href="#">Track Your Order</a></li>
+              <li><a href="#">Return</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-title">Our Information</h4>
+            <ul>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">User Terms & Conditions</a></li>
+              <li><a href="#">Return Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE - CONTACT INFO */}
         <div className="footer-right">
-          <form className="contact-form" onSubmit={onSubmit} noValidate>
-            <div className="row two">
-              <label className="field">
-                <input name="name" value={form.name} onChange={onChange} placeholder="Name" aria-label="Name" />
-              </label>
-              <label className="field">
-                <input name="email" type="email" value={form.email} onChange={onChange} placeholder="Email" className='email-input' aria-label="Email" />
-              </label>
-            </div>
+          <h4 className="footer-title">Contact Info</h4>
 
-            <div className="row two">
-              <label className="field">
-                <input name="phone" value={form.phone} onChange={onChange} placeholder="Phone" aria-label="Phone" />
-              </label>
-              <label className="field">
-                <input name="address" value={form.address} onChange={onChange} placeholder="Address" className='address-input' aria-label="Address" />
-              </label>
-            </div>
-
-            <div className="row">
-              <label className="field">
-                <textarea name="message" value={form.message} onChange={onChange} placeholder="Message" aria-label="Message" rows="5" />
-              </label>
-            </div>
-
-            <div className="row actions">
-              <button type="submit" className="btn-done">Done</button>
-              {status && <div className={`form-status ${status.type}`}>{status.text}</div>}
-            </div>
-          </form>
+          <ul className="contact-list">
+            <li>+0123-456-789</li>
+            <li>example@gmail.com</li>
+            <li>
+              8502 Preston Rd,<br />
+              Inglewood, Maine 98380
+            </li>
+          </ul>
         </div>
+
       </div>
 
+      {/* Bottom Bar */}
       <div className="footer-bottom">
-        <small>© {new Date().getFullYear()} Aurora Casa — All rights reserved</small>
+        <small>© {new Date().getFullYear()} Grocery Website — All rights reserved</small>
       </div>
+
     </footer>
   );
 }
