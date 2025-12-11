@@ -1,0 +1,97 @@
+:root{
+  --accent: #1b8a5a;    /* primary green accent */
+  --muted: #f6f6f6;
+  --text-dark: #0f1720;
+}
+
+/* Section wrapper */
+.category-section {
+  background: #fff;
+}
+
+/* title */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.section-title .highlight { color: var(--accent); }
+
+/* grid wrapper - adds horizontal scrolling on small screens */
+.category-grid-wrapper {
+  width: 100%;
+  /* center and allow horizontal scroll on xs */
+  overflow-x: visible;
+}
+
+/* category card box */
+.category-card {
+  width: 140px;                 /* card content width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* circular icon container */
+.category-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(23,138,90,0.06), rgba(23,138,90,0.02));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+}
+
+/* icon image inside circle */
+.category-icon img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  display: block;
+}
+
+/* label and count */
+.category-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.category-count {
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
+
+/* responsive tweaks */
+@media (max-width: 576px) {
+  .category-card { width: 120px; }
+  .category-icon { width: 72px; height: 72px; }
+  .category-icon img { width: 40px; height: 40px; }
+  .section-title { font-size: 1.25rem; }
+}
+
+/* Optional: make row horizontally scrollable on very small screens (touch) */
+/* If you prefer non-scrollable, remove this block */
+@media (max-width: 420px) {
+  .category-grid-wrapper .row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+
+  .category-grid-wrapper .col-6 {
+    flex: 0 0 auto;
+  }
+
+  /* show thinner scrollbar */
+  .category-grid-wrapper .row::-webkit-scrollbar { height: 8px; }
+  .category-grid-wrapper .row::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.12);
+    border-radius: 999px;
+  }
+}

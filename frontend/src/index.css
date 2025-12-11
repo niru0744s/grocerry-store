@@ -1,0 +1,13 @@
+/* keep vertical scrollbar reserve to avoid layout shift when page height changes */
+html {
+  /* reserve space for the vertical scrollbar in compliant browsers */
+  scrollbar-gutter: stable;
+
+  /* fallback for older browsers */
+  overflow-y: scroll;
+}
+
+/* optional: smoother touch scrolling on iOS */
+body {
+  -webkit-overflow-scrolling: touch;
+}

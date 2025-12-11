@@ -1,24 +1,116 @@
-import React, { useEffect } from 'react';
-import ProductCard from './ProductCard';
-import './product-grid.css';
+import React from "react";
+import ProductCard from "./ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
-/**
- * Props:
- *  - products: array of product objects
- *  - colsMinWidth: css min width for grid columns (default 220)
- */
-export default function ProductGrid({ products = [], colsMinWidth = 220 }) {
-    useEffect(()=>{
-        console.log("all products - ",products);
-    },[]);
+import "swiper/css";
+import "swiper/css/navigation";
+
+const products = [
+  {
+    id: 1,
+    image: "/products/chocolate-box.jpg",
+    title: "Chocolate Ball",
+    category: "Snacks & Sweets",
+    weight: "500 g",
+    price: 25,
+    oldPrice: 50,
+    discount: "50% off",
+    rating: 4.9,
+  },
+  {
+    id: 2,
+    image: "/products/brown-bread.jpg",
+    title: "Brown Bread",
+    category: "Bakery",
+    weight: "200 g",
+    price: 5,
+    oldPrice: 10,
+    discount: "50% off",
+    rating: 5.0,
+  },
+  {
+    id: 3,
+    image: "/products/brown-bread.jpg",
+    title: "Brown Bread",
+    category: "Bakery",
+    weight: "200 g",
+    price: 5,
+    oldPrice: 10,
+    discount: "50% off",
+    rating: 5.0,
+  },
+  {
+    id: 4,
+    image: "/products/brown-bread.jpg",
+    title: "Brown Bread",
+    category: "Bakery",
+    weight: "200 g",
+    price: 5,
+    oldPrice: 10,
+    discount: "50% off",
+    rating: 5.0,
+  },
+  {
+    id: 5,
+    image: "/products/brown-bread.jpg",
+    title: "Brown Bread",
+    category: "Bakery",
+    weight: "200 g",
+    price: 5,
+    oldPrice: 10,
+    discount: "50% off",
+    rating: 5.0,
+  },
+  {
+    id: 6,
+    image: "/products/brown-bread.jpg",
+    title: "Brown Bread",
+    category: "Bakery",
+    weight: "200 g",
+    price: 5,
+    oldPrice: 10,
+    discount: "50% off",
+    rating: 5.0,
+  },
+  // add more...
+];
+
+export default function ProductGrid() {
   return (
-    <section className="prod-grid-wrap">
-      <div
-        className="prod-grid"
-        style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${colsMinWidth}px, 1fr))` }}
-      >
-        {products.map(p => <ProductCard key={p.id} product={p} />)}
+    <section className="container my-5">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <small className="text-muted">Best Seller</small>
+          <h2 className="fw-bold">
+            Best <span style={{ color: "#116530" }}>Seller</span> Products
+          </h2>
+        </div>
+
+        <button className="btn btn-success rounded-pill px-4">
+          View All Products →
+        </button>
       </div>
+
+      <Swiper
+        modules={[Navigation]}
+        navigation
+        spaceBetween={25}
+        slidesPerView={4}
+        breakpoints={{
+          320: { slidesPerView: 1.2 },
+          576: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1200: { slidesPerView: 4 },
+        }}
+        style={{ paddingBottom: "30px" }}
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id}>
+            <ProductCard {...product} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 }

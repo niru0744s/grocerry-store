@@ -1,0 +1,149 @@
+:root{
+  --grocery-green: #116530;
+  --grocery-yellow: #f7b500;
+  --muted-gray: #f1f1f1;
+  --text-dark: #111827;
+  --text-muted: #6b6b6b;
+}
+
+/* Section wrapper */
+.features-gallery-section {
+  background: #fff;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+/* -------- Features row -------- */
+.features-row {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* single feature card */
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  text-align: left;
+  padding: 10px 8px;
+}
+
+/* icon circle */
+.feature-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(247,181,0,0.12), rgba(17,101,48,0.03));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* MUI icon inside */
+.feature-icon {
+  color: var(--grocery-yellow);
+  font-size: 28px !important;
+}
+
+/* text block */
+.feature-content {
+  text-align: left;
+}
+
+.feature-title {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.feature-sub {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* center text on small screens */
+@media (max-width: 767.98px) {
+  .feature-card {
+    justify-content: center;
+    text-align: center;
+    padding: 8px 6px;
+  }
+
+  .feature-content { text-align: center; }
+}
+
+/* -------- Gallery strip -------- */
+/* outer container to allow centering / overflow rules */
+.gallery-row {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* the strip uses flex; tiles have equal width */
+.gallery-strip {
+  display: flex;
+  gap: 0;
+  /* let it overflow horizontally on small screens for swipe */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+/* hide default scrollbar in webkit, but still scrollable */
+.gallery-strip::-webkit-scrollbar { height: 8px; }
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 999px;
+}
+
+/* each tile */
+.gallery-tile {
+  flex: 1 0 20%; /* show 5 tiles on wide screens */
+  min-width: 180px;
+  max-height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* image inside tile */
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* gentle hover zoom on desktop */
+.gallery-tile:hover img {
+  transform: scale(1.03);
+}
+
+/* separators (optional subtle line between tiles) for larger screens */
+@media (min-width: 992px) {
+  .gallery-tile { min-width: 220px; max-height: 260px; }
+}
+
+/* responsive: fewer tiles visible on small screens (scrollable) */
+@media (max-width: 991.98px) {
+  .gallery-tile { flex: 1 0 33.3333%; min-width: 220px; max-height: 220px; }
+}
+
+@media (max-width: 575.98px) {
+  .gallery-tile { flex: 1 0 80%; min-width: 260px; max-height: 220px; }
+  .feature-icon-wrap { width: 56px; height: 56px; }
+  .feature-icon { font-size: 24px !important; }
+}
+
+/* small visual polish */
+.features-gallery-section .container {
+  padding-left: 18px;
+  padding-right: 18px;
+}

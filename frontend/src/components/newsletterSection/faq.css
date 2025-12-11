@@ -1,0 +1,152 @@
+:root {
+  --grocery-green: #116530;
+  --grocery-yellow: #f7b500;
+  --muted-gray: #f1f1f1;
+  --text-dark: #111827;
+  --text-muted: #6b6b6b;
+}
+
+/* === Section wrapper === */
+.faq-section {
+  background: #fff;
+}
+
+/* === Title === */
+.faq-title {
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-dark);
+}
+.highlight-green { color: var(--grocery-green); }
+
+/* === Container for FAQ items (centers on page) === */
+.faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* === Single item === */
+/* make gap slightly smaller so items feel cohesive */
+.faq-item {
+  border-radius: 10px;
+  overflow: visible;        /* allow answer shadows to show */
+  margin-bottom: 10px;      /* reduced gap */
+  background: transparent;
+  position: relative;
+}
+
+/* === Question button === */
+.faq-question {
+  width: 100%;
+  border: none;
+  background: var(--muted-gray); /* default grey strip */
+  padding: 14px 18px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-dark);
+  border-radius: 10px;      /* match answer radius when closed */
+  transition: background 180ms ease, transform 120ms ease, box-shadow 160ms ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* keep question text from overlapping the icon */
+.faq-question .question-text {
+  display: inline-block;
+  max-width: calc(100% - 56px);
+  line-height: 1.45;
+}
+
+/* === Icon container === */
+.faq-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--grocery-green);
+  transition: color 160ms ease, background 160ms ease, transform 200ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* === Open / expanded styling === */
+.faq-item.open .faq-question {
+  background: var(--grocery-green);
+  color: #fff;
+  box-shadow: none; /* remove shadow when connected to answer */
+}
+
+/* icon color when open */
+.faq-item.open .faq-icon {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  transform: translateY(0);
+}
+
+/* === Answer area (works with MUI Collapse or manual wrapper) === */
+/* keep answer visually attached to the question with small seam */
+.faq-answer {
+  background: var(--grocery-green);
+  color: #fff;
+  padding: 12px 16px 14px 16px;  /* inner padding only */
+  border-radius: 0 0 10px 10px;  /* rounded bottom corners */
+  margin-top: 6px;               /* small seam so they don't touch awkwardly */
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  overflow: visible;
+  will-change: height, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* If you still use .faq-answer-wrapper (JS sets maxHeight) keep safe defaults */
+.faq-answer-wrapper {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 320ms cubic-bezier(.2,.9,.2,1), padding 260ms cubic-bezier(.2,.9,.2,1);
+  padding-top: 0;
+  padding-bottom: 0;
+  will-change: max-height, padding;
+}
+
+/* when answer is visible via wrapper, inner .faq-answer won't add extra padding (wrapper controls it) */
+/* if you are using MUI Collapse, Collapse will mount/unmount the .faq-answer directly, so wrapper is optional */
+
+/* subtle shadow for closed items (keeps look similar to reference) */
+.faq-item:not(.open) .faq-question {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* === Accessibility: focus === */
+.faq-question:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(17,24,39,0.06);
+  border-radius: 10px;
+}
+
+/* === Small screens: slightly different spacing === */
+@media (max-width: 576px) {
+  .faq-title { font-size: 1.35rem; }
+  .faq-list { padding: 0 8px; max-width: 360px; }
+  .faq-question { padding: 12px 14px; font-size: 14px; border-radius: 10px; }
+  .faq-question .question-text { max-width: calc(100% - 56px); }
+  .faq-answer { padding: 10px 14px 12px 14px; font-size: 13px; margin-top: 6px; }
+  .faq-item { margin-bottom: 10px; }
+  .faq-icon { width: 32px; height: 32px; }
+}
+
+/* === Extra small devices === */
+@media (max-width: 420px) {
+  .faq-list { padding: 0 6px; max-width: 320px; }
+  .faq-title { font-size: 1.25rem; }
+  .faq-question { font-size: 14px; padding: 12px 12px; }
+  .faq-answer { font-size: 13px; padding: 10px 12px 12px 12px; }
+}

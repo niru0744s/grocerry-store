@@ -1,0 +1,64 @@
+.promo-bg-card {
+  height: 350px;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding: 40px;
+}
+
+/* Left section width */
+.text-container {
+  max-width: 350px;
+}
+
+/* Overlay */
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+.promo-overlay.bright {
+  background-color: #f7b500;
+}
+
+.promo-overlay.light {
+  background-color: #ffffff;
+}
+
+/* Center badge horizontally */
+.badge-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.promo-badge {
+  background: #f7b500;
+  color: #111;
+  font-size: 0.95rem;
+}
+
+/* Title */
+.promo-title {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+/* Image responsiveness */
+@media (max-width: 576px) {
+  .promo-bg-card {
+    height: 420px;
+    background-position: center;
+    padding: 24px;
+  }
+
+  .text-container {
+    max-width: 100%;
+  }
+
+  .promo-title {
+    font-size: 1.8rem;
+  }
+}

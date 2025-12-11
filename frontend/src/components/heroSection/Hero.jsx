@@ -1,68 +1,92 @@
-import React from 'react';
-import './Hero.css';
-import AnnouncementBar from './AnnouncementBar';
+import React from "react";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import LockIcon from "@mui/icons-material/Lock";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import "./Hero.css";
 
 /**
  * Props:
- *  - bgImage: string (URL or imported module)
- *  - title (optional), subtitle (optional), ctaLabel (optional), onCta (optional)
- *
- * Usage:
- *  import heroImg from '../assets/hero.jpg';
- *  <Hero bgImage={heroImg} />
- *
- * or (public):
- *  <Hero bgImage="/hero.jpg" />
+ * - headline: main heading (can include <span> tags for color)
+ * - subhead: paragraph below
+ * - ctaText: primary CTA
+ * - secondaryText: secondary link text
+ * - heroImg: path to image (public or imported)
+ * - rating: numeric rating shown
  */
 export default function Hero({
-  bgImage = '/hero.png',
-  title = 'BRIGHTEN YOUR DIWALI',
-  highlight = 'CRACKERS',
-  subtitle = 'Premium quality fireworks at the best prices.',
-  ctaLabel = 'Shop now',
-  onCta = () => { window.location.href = '/#products'; }
+  headline = `Your One-Stop Shop for <span class="text-green">Quality Groceries</span>`,
+  subhead = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.`,
+  ctaText = "Shop Now",
+  secondaryText = "View All Products",
+  heroImg = "/images/heroImg.png",
 }) {
+  const bgStyle = {
+    backgroundImage: `linear-gradient(rgba(10,10,10,0.06), rgba(10,10,10,0.02)), url(${heroImg})`,
+  };
   return (
-    <section className="hero">
-        <AnnouncementBar/>
-      {/* top peach wave (transparent SVG allows underlying nav color to show like the design) */}
-      <div className="hero-wave hero-wave-top" aria-hidden>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="wave-svg">
-          <path d="M0,64 C200,10 400,110 720,80 C1040,50 1240,0 1440,40 L1440 0 L0 0 Z" />
-        </svg>
-      </div>
+    <header className="hero-banner position-relative">
+      <div className="hero-bg" style={bgStyle} aria-hidden="true"></div>
 
-      <div
-        className="hero-bg"
-        style={{ backgroundImage: `url(${bgImage})` }}
-        role="img"
-        aria-label="A cup of coffee with roasted beans"
-      >
-        <div className="hero-overlay">
-          <div className="hero-content">
-            <p className="hero-sub">{title}</p>
-            <h1 className="hero-title">
-              <span className="hero-title-plain">{highlight}</span>
-            </h1>
-            <p className="hero-desc">{subtitle}</p>
-            <div className="hero-actions">
-              <button className="btn-cta" onClick={onCta}>{ctaLabel}</button>
+      <div className="container position-relative">
+        <div className="row align-items-center gy-4">
+
+          {/* LEFT TEXT — overlayed on background */}
+          <div className="col-12 col-lg-6">
+            <div className="hero-content text-block">
+              <div className="badge-pill d-inline-flex align-items-center mb-3">
+                <ShoppingBagIcon className="me-2 small-icon" />
+                <span>The Best Online Grocery Store</span>
+              </div>
+
+              <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: headline }} />
+
+              <p className="lead text-muted max-700">{subhead}</p>
+
+              <div className="mt-4 d-flex align-items-center gap-3 flex-wrap">
+                <a href="#" className="btn btn-success btn-lg rounded-pill d-inline-flex align-items-center gap-2">
+                  {ctaText} <ArrowForwardIcon fontSize="small" />
+                </a>
+
+                <a href="#" className="text-decoration-underline text-dark">
+                  {secondaryText}
+                </a>
+              </div>
+
+              <div className="d-flex align-items-center gap-3 mt-4">
+                <div className="avatar-stack">
+                  <img src="/images/avatars/a1.jpg" alt="a1" />
+                  <img src="/images/avatars/a2.jpg" alt="a2" />
+                  <img src="/images/avatars/a3.jpg" alt="a3" />
+                </div>
+                <div>
+                  <div className="fw-bold">4.8 Ratings+</div>
+                  <div className="text-muted small">Trusted by 75k+ Customers</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* decorative spoon/beans/coffee cup circle (optional) */}
-          <div className="hero-deco" aria-hidden>
-            <div className="hero-coffee-circle" />
+          {/* RIGHT is intentionally empty — background contains the image. */}
+          <div className="col-12 col-lg-6 d-none d-lg-block">
+            {/* keep column to preserve two-column layout on large screens */}
           </div>
+
         </div>
       </div>
 
-      {/* bottom peach wave that curves into the main page */}
-      <div className="hero-wave hero-wave-bottom" aria-hidden>
-        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" className="wave-svg">
-          <path d="M0,80 C160,160 420,0 720,40 C1020,80 1280,140 1440,100 L1440 140 L0 140 Z" />
-        </svg>
+      {/* small badges that appear on top of the background */}
+      <div className="hero-floating-badges">
+        <div className="hero-badge hero-badge--secure d-flex align-items-center">
+          <LockIcon className="me-2 small-icon" />
+          <span>Secure Payment</span>
+        </div>
+
+        <div className="hero-badge hero-badge--delivery d-flex align-items-center">
+          <LocalShippingIcon className="me-2 small-icon" />
+          <span>Fast Delivery</span>
+        </div>
       </div>
-    </section>
+    </header>
   );
 }
