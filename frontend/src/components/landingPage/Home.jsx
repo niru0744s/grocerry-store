@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       <Hero bgImage={bgImage}/>
       <Categories/>
-      <section style={{ paddingTop: 18 }}>
+      <section style={{ paddingTop: 16 , paddingBottom: 10, backgroundColor:"#d9dedbff" }}>
         {/* <PromoSection/> */}
         <ProductGrid products={PRODUCTS} colsMinWidth={220} />
       </section>
