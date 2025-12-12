@@ -93,7 +93,6 @@ export default function ProductGrid() {
       </div>
 
       <Swiper
-        modules={[Navigation]}
         navigation
         spaceBetween={25}
         slidesPerView={4}
