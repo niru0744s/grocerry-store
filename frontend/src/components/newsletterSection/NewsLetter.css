@@ -1,35 +1,69 @@
-.newsletter-wrapper{
+/* =========================
+   Newsletter component CSS
+   Stable layout, no wobble
+   ========================= */
+
+/* Section wrapper (optional) */
+.newsletter-section {
+  /* Controls the vertical spacing of the whole block */
+  padding-top: 3.25rem;
+  padding-bottom: 3.25rem;
+  background: transparent; /* change if you have a bg */
+  overflow: hidden;        /* prevents box-shadow from causing scrollbars */
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+/* keep your existing wrapper class for compatibility */
+.newsletter-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem;
   width: 100%;
   box-sizing: border-box;
+  margin: 0; /* ensure no default margin creates jumps */
 }
 
-.newsletter-title {
+/* subtitle (keeps similar name but normalized) */
+.newsletter-title,
+.newsletter-subtitle {
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.25rem;
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1rem;
   line-height: 1.1;
 }
-.highlight-green { color: #0fa46a; }
+
+/* alternative heading class in case you prefer to style heading separately */
+.newsletter-heading {
+  margin: 0.5rem 0 1.25rem;
+  font-size: 2rem; /* tune if needed */
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* highlight helper */
+.highlight-green {
+  color: #0fa46a;
+}
 
 /* container that holds input + button on larger screens */
-.input-row{
+.input-row {
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 520px; /* desktop width cap */
   gap: 0.75rem;
   justify-content: center;
+  box-sizing: border-box;
 }
 
-/* Input - keep it compact on mobile */
-.email-input{
+/* Input - keep it compact on mobile and flexible in flex container */
+.email-input {
   flex: 1 1 auto;
-  min-width: 0;
+  min-width: 0; /* critical: prevents flex item overflow and layout shifts */
   width: 100%;
   max-width: 420px;
   height: 48px;              /* reasonable height */
@@ -42,10 +76,14 @@
   text-align: left;         /* placeholder/text left aligned */
   display: block;
   line-height: 1;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-/* Button - keep natural width on desktop, full width on small */
-.subscribe-btn{
+/* Button - keep natural width on desktop, stable behavior on focus */
+.subscribe-btn {
   flex: 0 0 auto;
   padding: 10px 22px;
   border-radius: 26px;
@@ -55,12 +93,33 @@
   border: none;
   box-shadow: 0 6px 12px rgba(247,181,0,0.12);
   font-size: 0.98rem;
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
-/* focus styles */
-.email-input:focus, .subscribe-btn:focus {
-  outline: 3px solid rgba(0,123,255,0.08);
-  outline-offset: 2px;
+/* Replace browser outline with box-shadow to avoid layout shift */
+.email-input:focus {
+  outline: none;
+  /* subtle ring that does not affect layout */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06), 0 0 0 6px rgba(0,123,255,0.06);
+}
+
+.subscribe-btn:focus {
+  outline: none;
+  box-shadow: 0 10px 14px rgba(0,0,0,0.06), 0 0 0 6px rgba(0,123,255,0.05);
+}
+
+/* small hover micro-interaction */
+.subscribe-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Prevent inputs from causing page resize on autofill in some browsers */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 /* ===== Mobile tweaks ===== */
@@ -69,9 +128,15 @@
     padding: 1.25rem 1rem 2rem;
   }
 
+  /* If you're using .newsletter-title elsewhere, this reduces size on mobile */
   .newsletter-title {
     font-size: 1.15rem;
     margin-bottom: 0.85rem;
+  }
+
+  .newsletter-heading {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
   }
 
   .input-row {
@@ -82,17 +147,18 @@
     margin: 0 auto;
   }
 
-  .email-input{
-    height: 48px;           /* much smaller than earlier huge box */
+  .email-input {
+    height: 48px;           /* consistent compact height */
     padding: 0 16px;
     max-width: 100%;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.04);
   }
 
-  .subscribe-btn{
-    width: 60%;             /* centered narrower button like reference */
-    margin: 0 auto;
+  /* Use full width button on mobile to avoid width toggling that causes jumps */
+  .subscribe-btn {
+    width: 100%;
+    margin: 0;
     padding: 10px 18px;
     border-radius: 22px;
     font-size: 0.95rem;
@@ -104,3 +170,10 @@
   .input-row { max-width: 600px; }
   .email-input { max-width: 480px; }
 }
+
+/* Extra safety: ensure no unexpected margin collapse between adjacent sections */
+.newsletter-section + * {
+  margin-top: 0 !important;
+}
+
+/* Accessibility: prefer visible focus for keyboard users (box-shadow above) */

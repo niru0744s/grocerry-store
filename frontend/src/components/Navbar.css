@@ -1,26 +1,159 @@
-/* src/components/navbar.css */
-.nc-header { background:#f3dfd6; border-bottom:1px solid rgba(0,0,0,0.06); position:relative; }
-.nc-nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; gap:16px; box-sizing:border-box; }
-.nc-brand-link { display:flex; align-items:center; gap:10px; text-decoration:none; color:#2b2b2b; }
-.nc-logo { width:40px; height:40px; border-radius:999px; background:#3b2b2b; color:white; display:flex; align-items:center; justify-content:center; font-weight:700; }
-.nc-brand-text { font-weight:600; font-size:16px; }
-
-.nc-links.desktop { display:flex; gap:18px; align-items:center; }
-.nc-link { text-decoration:none; color:#4a4a4a; font-weight:500; }
-.nc-link:hover { color:#111; }
-
-.nc-right { display:flex; align-items:center; gap:12px; }
-.nc-cta { background:#3b2b2b; color:white; padding:6px 12px; border-radius:8px; text-decoration:none; font-weight:600; white-space:nowrap; }
-.nc-hamburger { display:none; background:transparent; border:0; font-size:18px; cursor:pointer; }
-.nc-mobile {
-  display: none;
+/* ===== NAVBAR THEME COLORS ===== */
+:root {
+  --primary-green: #116530;
+  --accent-yellow: #F7B500;
+  --light-bg: #F1F8F4;
+  --text-dark: #111827;
+  --text-muted: #4B5563;
 }
-/* Mobile */
+
+/* HEADER */
+.nc-header { 
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* NAVBAR */
+.nc-nav { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  padding: 14px 20px; 
+}
+
+/* BRAND */
+.nc-brand-link { 
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  text-decoration:none; 
+  color: var(--text-dark); 
+}
+
+.nc-logo { 
+  width:42px; 
+  height:42px; 
+  border-radius:999px; 
+  background: var(--primary-green); 
+  color:white; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  font-weight:700; 
+  font-size:18px;
+}
+
+.nc-brand-text {
+  font-weight:700;
+  font-size:18px;
+  color: var(--primary-green);
+}
+
+/* LINKS (Desktop) */
+.nc-links.desktop { 
+  display:flex; 
+  gap:22px; 
+  align-items:center; 
+}
+
+.nc-link { 
+  text-decoration:none; 
+  color: var(--text-muted); 
+  font-weight:500; 
+  transition: .2s ease;
+}
+
+.nc-link:hover { 
+  color: var(--primary-green); 
+}
+
+/* RIGHT SIDE CTA + BURGER */
+.nc-right { 
+  display:flex; 
+  align-items:center; 
+  gap:14px; 
+}
+
+/* CTA BUTTON */
+.nc-cta { 
+  background: var(--primary-green);
+  color:white; 
+  padding:8px 16px; 
+  border-radius:10px; 
+  text-decoration:none; 
+  font-weight:600; 
+  white-space:nowrap;
+  transition: background .2s ease;
+}
+.nc-cta:hover {
+  background:#0e5227;
+}
+
+/* HAMBURGER */
+.nc-hamburger { 
+  display:none; 
+  background:transparent; 
+  border:0; 
+  font-size:22px; 
+  cursor:pointer; 
+  color: var(--primary-green);
+}
+
+/* MOBILE MENU */
+.nc-mobile { 
+  display:none; 
+}
+
 @media (max-width:768px){
-  .nc-links.desktop { display:none !important; }         /* hide desktop links on small */
+
+  /* Hide desktop links */
+  .nc-links.desktop { display:none !important; }
+
+  /* Show hamburger */
   .nc-hamburger { display:block; }
-  .nc-mobile { display:block; max-height:0; overflow:hidden; transition: max-height .28s ease-out, padding .2s ease; background:#f8eee9; box-sizing:border-box; }
-  .nc-mobile.open { max-height:500px; padding:12px 16px; } /* open state */
-  .nc-mobile-link { display:block; padding:10px 0; text-decoration:none; color:#333; border-bottom:1px solid rgba(0,0,0,0.03); }
-  .nc-mobile-cta { display:block; margin-top:8px; background:#3b2b2b; color:white; padding:8px; text-align:center; border-radius:8px; text-decoration:none; }
+
+  /* Mobile menu container */
+  .nc-mobile { 
+    display:block; 
+    max-height:0; 
+    overflow:hidden; 
+    transition:max-height .3s ease, padding .2s ease; 
+    background: #F8FFF9; 
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+
+  .nc-mobile.open { 
+    max-height:500px; 
+    padding:12px 18px; 
+  }
+
+  /* Mobile links */
+  .nc-mobile-link { 
+    display:block; 
+    padding:12px 0; 
+    text-decoration:none; 
+    color: var(--text-dark);
+    font-weight:500;
+    border-bottom:1px solid rgba(0,0,0,0.05); 
+  }
+
+  .nc-mobile-link:hover { 
+    color: var(--primary-green); 
+  }
+
+  /* Mobile CTA */
+  .nc-mobile-cta { 
+    display:block; 
+    margin-top:12px; 
+    background: var(--primary-green); 
+    color:white; 
+    padding:10px; 
+    text-align:center; 
+    border-radius:10px; 
+    text-decoration:none; 
+    font-weight:600;
+  }
 }

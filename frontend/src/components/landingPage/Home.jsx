@@ -4,6 +4,7 @@ import bgImage from '../../assets/hero.png';
 import {PRODUCTS} from '../../data/products';
 import ProductGrid from '../products/ProductGrid';
 import Categories from '../categorySection/Categories';
+import PromoSection from '../promoSection/PromoSection';
 export default function Home() {
     console.log(PRODUCTS);
   return (
@@ -11,9 +12,7 @@ export default function Home() {
       <Hero bgImage={bgImage}/>
       <Categories/>
       <section style={{ paddingTop: 18 }}>
-        <h2 style={{ textAlign: 'center', marginTop: 0 }}>Top Milk Shakes</h2>
-        <p style={{ textAlign: 'center', color: '#6b5957' }}>Explore The Most Bought Shakes This Week</p>
-
+        {/* <PromoSection/> */}
         <ProductGrid products={PRODUCTS} colsMinWidth={220} />
       </section>
     </div>

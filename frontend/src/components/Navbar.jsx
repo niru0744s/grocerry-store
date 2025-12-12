@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-export default function Navbar({ brand = 'Aurora Casa' }) {
+export default function Navbar({ brand = 'Grocery Store' }) {
   const [open, setOpen] = useState(false);
 
   const links = [
@@ -17,7 +17,7 @@ export default function Navbar({ brand = 'Aurora Casa' }) {
       <nav className="nc-nav">
         <div className="nc-brand">
           <Link to="/" className="nc-brand-link">
-            <div className="nc-logo">A</div>
+            <div className="nc-logo">G</div>
             <span className="nc-brand-text">{brand}</span>
           </Link>
         </div>

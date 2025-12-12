@@ -55,9 +55,9 @@ export default function Hero({
 
               <div className="d-flex align-items-center gap-3 mt-4">
                 <div className="avatar-stack">
-                  <img src="/images/avatars/a1.jpg" alt="a1" />
-                  <img src="/images/avatars/a2.jpg" alt="a2" />
-                  <img src="/images/avatars/a3.jpg" alt="a3" />
+                  <img src="/images/avatar/a1.jpg" alt="a1" />
+                  <img src="/images/avatar/a2.jpg" alt="a2" />
+                  <img src="/images/avatar/a3.jpg" alt="a3" />
                 </div>
                 <div>
                   <div className="fw-bold">4.8 Ratings+</div>

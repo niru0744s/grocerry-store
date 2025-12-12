@@ -58,8 +58,8 @@ export default function ProductCard({
         <div className="mt-auto d-flex align-items-center justify-content-between">
           {/* price block */}
           <div className="price-block">
-            <div className="fw-bold price-now">${price.toFixed(2)}</div>
-            {oldPrice && <div className="text-muted small text-decoration-line-through">${oldPrice.toFixed(2)}</div>}
+            <div className="fw-bold price-now">₹{price.toFixed(2)}/-</div>
+            {oldPrice && <div className="text-muted small text-decoration-line-through">₹{oldPrice.toFixed(2)}/-</div>}
           </div>
 
           {/* add button */}
