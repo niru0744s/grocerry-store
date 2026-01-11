@@ -9,7 +9,7 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 export default function Footer() {
   return (
-    <footer className="site-footer m-2 rounded">
+    <section className="site-footer m-2 rounded" id="contact">
 
       <div className="footer-inner container">
 
@@ -92,6 +92,6 @@ export default function Footer() {
         <small>© {new Date().getFullYear()} Grocery Website — All rights reserved</small>
       </div>
 
-    </footer>
+    </section>
   );
 }

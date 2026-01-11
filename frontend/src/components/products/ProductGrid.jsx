@@ -78,7 +78,7 @@ const products = [
 
 export default function ProductGrid() {
   return (
-    <section className="container my-5">
+    <section className="container my-5" id="menu">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
           <small className="text-muted">Best Seller</small>

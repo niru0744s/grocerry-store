@@ -25,7 +25,7 @@ export default function Hero({
     backgroundImage: `linear-gradient(rgba(10,10,10,0.06), rgba(10,10,10,0.02)), url(${heroImg})`,
   };
   return (
-    <header className="hero-banner position-relative">
+    <section className="hero-banner position-relative" id="home">
       <div className="hero-bg" style={bgStyle} aria-hidden="true"></div>
 
       <div className="container position-relative">
@@ -87,6 +87,6 @@ export default function Hero({
           <span>Fast Delivery</span>
         </div>
       </div>
-    </header>
+    </section>
   );
 }

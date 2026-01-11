@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar({ brand = 'Grocery Store' }) {
   const [open, setOpen] = useState(false);
-
+  const [active, setActive] = useState("#home");
   const links = [
-    { to: '/', label: 'Home' },
-    { to: '/menu', label: 'Menu' },
-    { to: '/blog', label: 'Blog' },
-    { to: '/contact', label: 'Contact' }
+    { id: 1,href: '#home', label: 'Home' },
+    { id: 2,href: '#menu', label: 'Menu' },
+    { id: 3,href: '#blog', label: 'Blog' },
+    { id: 4,href: '#contact', label: 'Contact' }
   ];
+
+  useEffect(()=>{
+    const sections = links.map(l => document.querySelector(l.href));
+    const onScroll = () => {
+      const pos = window.scrollY + 120;
+      sections.forEach(sec => {
+        if(
+          sec && 
+          pos >= sec.offsetTop && 
+          pos < sec.offsetTop + sec.offsetHeight
+        ){
+          setActive(`#${sec.id}`);
+        }
+      });
+    }
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll",onScroll);
+  },[])
+
+  const scrollTo = (href) => {
+    setOpen(false);
+    document.querySelector(href)?.scrollIntoView({behavior: "smooth"});
+  };
 
   return (
     <header className="nc-header">
@@ -23,7 +46,11 @@ export default function Navbar({ brand = 'Grocery Store' }) {
         </div>
 
         <div className="nc-links desktop">
-          {links.map(l => <Link key={l.to} to={l.to} className="nc-link">{l.label}</Link>)}
+          {links.map(l => 
+          <Link 
+          key={l.id} 
+          className="nc-link"
+          onClick={()=> scrollTo(l.href)}>{l.label}</Link>)}
         </div>
 
         <div className="nc-right">
@@ -36,7 +63,10 @@ export default function Navbar({ brand = 'Grocery Store' }) {
 
       <div className={`nc-mobile ${open ? 'open' : ''}`}>
         {links.map(l => (
-          <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="nc-mobile-link">
+          <Link 
+          key={l.id} 
+          onClick={() => scrollTo(links.href)} 
+          className="nc-mobile-link">
             {l.label}
           </Link>
         ))}

@@ -18,7 +18,7 @@ export default function FaqSectionMui() {
   const toggle = (idx) => setOpenIndex(prev => (prev === idx ? null : idx));
 
   return (
-    <section className="faq-section">
+    <section className="faq-section" id="blogs">
       <div className="container">
         <div className="text-center mb-4">
           <small className="text-muted">News & Blogs</small>
